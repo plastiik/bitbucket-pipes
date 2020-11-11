@@ -1,0 +1,25 @@
+name: AWS ECS deploy
+image: bitbucketpipelines/aws-ecs-deploy:1.3.0
+description: Deploy a containerized application to AWS ECS
+category: Deployment
+variables:
+  - name: AWS_ACCESS_KEY_ID
+    default: "$AWS_ACCESS_KEY_ID"
+  - name: AWS_SECRET_ACCESS_KEY
+    default: "$AWS_SECRET_ACCESS_KEY"
+  - name: AWS_DEFAULT_REGION
+    default: "$AWS_DEFAULT_REGION"
+  - name: AWS_DEFAULT_PROFILE
+    default: "$AWS_DEFAULT_PROFILE"
+repository: https://bitbucket.org/atlassian/aws-ecs-deploy
+vendor:
+  name: Amazon
+  website: https://aws.amazon.com/
+maintainer:
+  name: Atlassian
+  website: https://www.atlassian.com/
+tags:
+    - aws
+    - ecs
+    - docker
+    - deployment
