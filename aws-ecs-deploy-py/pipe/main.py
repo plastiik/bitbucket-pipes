@@ -56,7 +56,7 @@ class ECSDeploy(Pipe):
 
     def get_client(self):
         try:
-            return boto3.client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION' profile_name=self.get_variable('AWS_DEFAULT_PROFILE'))
+            return boto3.client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION', profile_name=self.get_variable('AWS_DEFAULT_PROFILE'))
         except ClientError as err:
             self.fail("Failed to create boto3 client.\n" + str(err))
 
@@ -117,7 +117,7 @@ class ECSDeploy(Pipe):
         region = self.get_variable('AWS_DEFAULT_REGION')
         definition = self.get_variable('TASK_DEFINITION')
         try:
-            image = self.get_variable('IMAGE_NAME')
+            image = self.get_variable('image_NAME')
         except KeyError:
             image = None
         cluster_name = self.get_variable('CLUSTER_NAME')
