@@ -56,7 +56,7 @@ class ECSDeploy(Pipe):
 
     def get_client(self):
         try:
-            return boto3.client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION', profile_name=self.get_variable('AWS_DEFAULT_PROFILE'))
+            return boto3.session.Session(profile_name=self.get_variable('AWS_DEFAULT_PROFILE')).client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION'))
         except ClientError as err:
             self.fail("Failed to create boto3 client.\n" + str(err))
 
