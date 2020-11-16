@@ -56,6 +56,9 @@ class ECSDeploy(Pipe):
     def get_client(self):
         try:
             print(self.get_variable('AWS_PROFILE'))
+            boto3.session.Session(profile_name=self.get_variable('AWS_PROFILE'))
+            print(boto3.client('sts'))
+            
             return boto3.session.Session(profile_name=self.get_variable('AWS_PROFILE')).client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION'))
             # return boto3.client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION'))
         except ClientError as err:
