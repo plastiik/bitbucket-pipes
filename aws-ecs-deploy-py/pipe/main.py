@@ -2,6 +2,7 @@ import json
 from pprint import pformat
 import yaml
 import boto3
+from boto3.session import Session
 from bitbucket_pipes_toolkit import Pipe, get_logger
 from botocore.exceptions import ClientError, ParamValidationError, WaiterError
 
@@ -57,8 +58,9 @@ class ECSDeploy(Pipe):
         try:
             # print(self.get_variable('AWS_PROFILE'))
             # boto3.session.Session(profile_name=self.get_variable('AWS_PROFILE'))
-            # return boto3.session.Session(profile_name=self.get_variable('AWS_PROFILE')).client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION'))
-            return boto3.client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION'))
+            print get_profiles()
+            return boto3.session.Session(profile_name=self.get_variable('AWS_PROFILE')).client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION'))
+            # return boto3.client('ecs', region_name=self.get_variable('AWS_DEFAULT_REGION'))
         except ClientError as err:
             self.fail("Failed to create boto3 client.\n" + str(err))
 
